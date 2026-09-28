@@ -1,0 +1,35 @@
+1. Singleton 
+Problema: En un videojuego multijugador, existe un componente encargado de gestionar la configuración de audio. Si diferentes partes de la aplicación instanciaran su propio gestor de configuración, se correría el riesgo de tener estados inconsistentes donde la música suene a un volumen en una pantalla y a otro diferente durante la partida.
+
+Justificación técnica: El patrón Singleton garantiza que exista una única instancia de la clase de configuración de audio accesible globalmente en todo el ciclo de vida del juego, centralizando la lectura y modificación de los parámetros de sonido de forma consistente.
+
+
+
+2. Factory Method 
+Problema: Una aplicación de logística de entregas e-commerce necesita calcular costos y procesar envíos según el tipo de transporte (Tractor, Barco, Dron). Si la lógica de instanciación de estos medios de transporte se acopla a la clase principal de la aplicación, cada vez que se agregue un nuevo vehículo habrá que modificar el código existente, violando el principio de Abierto/Cerrado.
+
+Justificación técnica: Factory Method delega la creación de objetos de transporte a subclases o creadores concretos. Esto permite incorporar nuevos tipos de vehículos en el futuro sin alterar la lógica de negocio cliente.
+
+
+3. Abstract Factory
+Problema: Un sistema de automatización para hogares inteligentes (Smart Home) debe comunicarse con componentes de hardware que corresponden a familias de protocolos específicos (ej. tecnología Zigbee vs. tecnología ZWave). Mezclar un interruptor Zigbee con un concentrador ZWave causaría fallos de incompatibilidad en la red.
+
+Justificación técnica: El patrón Abstract Factory asegura que se creen familias de objetos relacionados o dependientes (en este caso, un interruptor y un sensor de temperatura de la misma tecnología) sin especificar sus clases concretas directamente en el cliente, garantizando la compatibilidad del ecosistema.
+
+
+4. Adapter 
+Problema: Una pasarela de procesamiento de pagos moderna opera exclusivamente utilizando datos estructurados en formato JSON (JsonPaymentProcessor). No obstante, el sistema debe integrarse con una librería legado bancaria que únicamente procesa solicitudes con un motor basado en XML (LegacyXmlBankService).
+
+Justificación técnica: El patrón Adapter actúa como un intermediario que convierte la interfaz del servicio antiguo (XML) a la interfaz requerida por el cliente moderno (JSON), permitiendo que ambas clases colaboren sin necesidad de reescribir el código legado ni alterar la arquitectura del cliente moderno.
+
+
+5. Decorator 
+Problema: Una plataforma de streaming de video permite personalizar la experiencia de almacenamiento del historial de reproducción del usuario. El flujo base escribe datos localmente, pero el usuario puede activar de manera combinable opcionalmente: cifrado de datos, compresión de almacenamiento y respaldos automáticos en la nube. Crear subclases fijas para cada combinación posible (ej. CifradoComprimido, ComprimidoNube, CifradoNube, etc.) provocaría una explosión de clases inmanejable.
+
+Justificación técnica: El patrón Decorator permite añadir responsabilidades adicionales a un objeto de forma dinámica mediante la envoltura (wrapping), evitando la rigidez de la herencia estática.
+
+
+6. Facade
+Problema: En una aplicación de banca digital, el proceso de solicitud de un crédito requiere interactuar con múltiples subsistemas complejos: verificación de antecedentes crediticios (CreditHistoryService), validación de fondos en cuentas activas (AccountBalanceService) y evaluación de listas de prevención de fraude (AntiFraudService). Si la capa cliente ejecuta y gestiona directamente estas múltiples consultas de forma individual, el código se vuelve altamente acoplado e propenso a errores.
+
+Justificación técnica: El patrón Facade ofrece una interfaz unificada y simplificada sobre un conjunto complejo de subsistemas, reduciendo drásticamente el acoplamiento de la aplicación cliente con la lógica interna del dominio bancario.
